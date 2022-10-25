@@ -19,7 +19,7 @@ internal static class Calculator
                 }
                 // i + 1 is to allow 2147483647 (Max(Int32)) 
                 sum += (i + 1);
-                Thread.Sleep(10);
+                Task.Delay(10);
             }
             return sum;
         }, token);
