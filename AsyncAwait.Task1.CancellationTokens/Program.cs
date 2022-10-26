@@ -33,7 +33,7 @@ internal class Program
         {
             if (int.TryParse(input, out var n))
             {
-                CalculateSum(n);
+                await CalculateSumAsync(n);
             }
             else
             {
@@ -50,7 +50,7 @@ internal class Program
 
     private static CancellationTokenSource cancellationTokenSource;
 
-    private static void CalculateSum(int n)
+    private static async Task CalculateSumAsync(int n)
     {
         if (cancellationTokenSource != null)
         {
@@ -65,7 +65,7 @@ internal class Program
 
         Console.WriteLine($"The task for {n} started... Enter N to cancel the request:");
 
-        sumTask.ContinueWith(antecedent =>
+        await sumTask.ContinueWith(antecedent =>
         {
             var sum = antecedent.Result;
             if (sum >= 0)

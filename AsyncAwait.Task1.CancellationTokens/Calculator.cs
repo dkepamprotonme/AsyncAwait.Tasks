@@ -8,7 +8,7 @@ internal static class Calculator
     // todo: change this method to support cancellation token
     public static async Task<long> CalculateAsync(int n, CancellationToken token)
     {
-        return await Task.Run(() =>
+        return await Task.Run(async () =>
         {
             long sum = 0;
             for (var i = 0; i < n; i++)
@@ -19,7 +19,7 @@ internal static class Calculator
                 }
                 // i + 1 is to allow 2147483647 (Max(Int32)) 
                 sum += (i + 1);
-                Task.Delay(10);
+                await Task.Delay(10);
             }
             return sum;
         }, token);
